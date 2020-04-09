@@ -11,8 +11,9 @@ import com.unitins.projetointegrador2.model.Aluno;
 
 @Repository
 @Transactional
-public interface AlunoRepository extends CrudRepository<Aluno, Integer>{
-	
+public interface AlunoRepository extends CrudRepository<Aluno, Integer> {
+
+	// Fazendo busca pelo aluno pelo nome
 	@Query("SELECT al FROM Aluno al WHERE al.nome LIKE %?1%")
-    List<Aluno> findAlunoByNome(String nome);
+	List<Aluno> findAlunoByNome(String nome);
 }
