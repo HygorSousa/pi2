@@ -1,9 +1,10 @@
-#P.I. 2
-# P.I. 2
+# pi2
+Projeto integrador 2  - Unitins 2020/1 
 ---
 ## Como criar a branch developer local
 
-A partir do dia 22/09 branch *master* ser· bloqueada para receber *push*, comeÁaremos a trabalhar com a branch *developer*.
+A partir do dia 22/09 branch *master* ser√° bloqueada para receber *push*, come√ßaremos a trabalhar com a branch *developer*.
+
 Para criar a branch *developer* basta seguir os passos abaixo.
 Dentro da pasta do projeto, abra o terminal e digite o comando `git pull`.
 ```sh
@@ -12,14 +13,16 @@ From github.com:HygorSousa/guidedocs
  * [new branch]      developer  -> origin/developer
 Already up to date.
 ```
-Feito isso, ser· atualizado o projeto trazendo a referÍncia da branch *developer*, agora precisamos criar a branch.
+
+Feito isso, ser√° atualizado o projeto trazendo a refer√™ncia da branch *developer*, agora precisamos criar a branch.
 Execute o comando `git branch -a -v`.
 ```sh
 hygor@debian:~/Projetos/guideDocs/guidedocs$ git branch -a -v
-* master                   d9c9d95 CriaÁ„o das classes e atualizaÁ„o do modelo de atualizaÁ„o do controle de acesso para adequaÁ„o ao modelo de classes
+* master                   d9c9d95 Cria√ß√£o das classes e atualiza√ß√£o do modelo de atualiza√ß√£o do controle de acesso para adequa√ß√£o ao modelo de classes
   remotes/origin/HEAD      -> origin/master
-  remotes/origin/developer d9c9d95 CriaÁ„o das classes e atualizaÁ„o do modelo de atualizaÁ„o do controle de acesso para adequaÁ„o ao modelo de classes
-  remotes/origin/master    d9c9d95 CriaÁ„o das classes e atualizaÁ„o do modelo de atualizaÁ„o do controle de acesso para adequaÁ„o ao modelo de classes
+  remotes/origin/developer d9c9d95 Cria√ß√£o das classes e atualiza√ß√£o do modelo de atualiza√ß√£o do controle de acesso para adequa√ß√£o ao modelo de classes
+  remotes/origin/master    d9c9d95 Cria√ß√£o das classes e atualiza√ß√£o do modelo de atualiza√ß√£o do controle de acesso para adequa√ß√£o ao modelo de classes
+
 ```
 Para criar a branch, basta executar o comando `git checkout -b developer origin/developer`.
 ```sh
@@ -27,7 +30,8 @@ hygor@debian:~/Projetos/guideDocs/guidedocs$ git checkout -b developer origin/de
 Branch 'developer' set up to track remote branch 'developer' from 'origin'.
 Switched to a new branch 'developer'
 ```
-Feito isso est· criada a branch, para conferir basta executar o comando `git branch -a`
+Feito isso est√° criada a branch, para conferir basta executar o comando `git branch -a`
+
 ```sh
 hygor@debian:~/Projetos/guideDocs/guidedocs$ git branch -a
 * developer
@@ -36,4 +40,6 @@ hygor@debian:~/Projetos/guideDocs/guidedocs$ git branch -a
   remotes/origin/developer
   remotes/origin/master
 ```
+
 O __asteristico__ define a branch em uso.
+
