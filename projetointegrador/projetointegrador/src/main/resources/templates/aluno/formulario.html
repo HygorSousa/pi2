@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Cadastrar contatos</title>
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	media="screen">
+</head>
+
+<body>
+	<div class="container">
+		<h1>Cadastrar Contatos</h1>
+
+		<form th:object="${aluno}" th:action="@{/aluno/salvar}" method="post">
+
+			<input th:field="*{id}" type="hidden" id="id" />
+
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<label for="nome">Nome</label> <input th:field="*{nome}"
+						type="text" class="form-control" id="nome" placeholder="Nome" />
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<label for="matricula">Matricula</label> <input
+						th:field="*{matricula}" type="text" class="form-control"
+						id="matricula" placeholder="Matricula" />
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<label for="cpf">CPF</label> <input th:field="*{cpf}" type="text"
+						class="form-control" id="cpf" placeholder="Cpf" />
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-md-4 mb-3">
+					<label for="nome">Turma</label> <select th:field="*{turma.id}"
+						class="chosen-select form-control" id="turma"
+						data-placeholder="turma">
+						<option th:each="turma : ${turmas}" th:value="${turma.id}"
+							th:text="${turma.semestre}">2018</option>
+					</select>
+				</div>
+			</div>
+
+			<a class="btn" href="/aluno/listaraluno">Voltar</a>
+			<button class="btn btn-success" type="submit">Salvar</button>
+		</form>
+	</div>
+
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

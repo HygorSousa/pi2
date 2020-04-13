@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listagem de Turmas</title>
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	media="screen">
+</head>
+
+<body>
+
+	<div class="container">
+
+		<nav class="navbar navbar-dark bg-dark flex-md-nowrap p-3 shadow">
+			<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">SGPCC</a>
+			<ul class="navbar-nav px-3">
+				<li class="nav-item text-nowrap"><a class="nav-link" href="#">Usuário
+						Logado</a></li>
+			</ul>
+		</nav>
+		
+		</br>
+
+		<div class="container-fluid">
+		<h3>Listagem de Proposta de Conclusão de Curso ou Trabalho de
+			Conclusão de Curso</h3>
+			<div class="row">
+				<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+					<div class="sidebar-sticky">
+						<h6
+							class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+							<span>Administrador</span> <a
+								class="d-flex align-items-center text-muted" href="#"
+								aria-label="Add a new report"> <span
+								data-feather="plus-circle"></span>
+							</a>
+						</h6>
+						<ul class="nav flex-column">
+							<li class="nav-item"><a class="nav-link" href="#"> <span
+									data-feather="file"></span> Crud Aluno
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="#"> <span
+									data-feather="shopping-cart"></span> Crud Professor
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="#"> <span
+									data-feather="users"></span> Crud Turma
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="#"> <span
+									data-feather="bar-chart-2"></span> Crud Conhecimeto
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="#"> <span
+									data-feather="layers"></span> Crud FAQ
+							</a></li>
+						</ul>
+
+						<h6
+							class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+							<span>Professores</span> <a
+								class="d-flex align-items-center text-muted" href="#"
+								aria-label="Add a new report"> <span
+								data-feather="plus-circle"></span>
+							</a>
+						</h6>
+						<ul class="nav flex-column mb-2">
+							<li class="nav-item"><a class="nav-link" href="#"> <span
+									data-feather="file-text"></span> Montar Banca
+							</a></li>
+						</ul>
+
+						<h6
+							class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+							<span>Geral</span> <a
+								class="d-flex align-items-center text-muted" href="#"
+								aria-label="Add a new report"> <span
+								data-feather="plus-circle"></span>
+							</a>
+						</h6>
+						<ul class="nav flex-column mb-3">
+							<li class="nav-item"><a class="nav-link" href="#"> <span
+									data-feather="file-text"></span> Processo (PCC/TCC)
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="#"> <span
+									data-feather="file-text"></span> Alterar Perfil
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="#"> <span
+									data-feather="file-text"></span> Sair
+							</a></li>
+						</ul>
+
+					</div>
+				</nav>
+
+				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+					</br>
+
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<label class="input-group-text" for="inputGroupSelect01">Filtros</label>
+						</div>
+						<select class="custom-select" id="inputGroupSelect01">
+							<option selected>Escolha...</option>
+							<option value="1">Nome Aluno</option>
+							<option value="2">Data Início</option>
+							<option value="3">Nome Orientador</option>
+							<option value="4">Data Fim</option>
+							<option value="5">Turma / ano</option>
+						</select>
+					</div>
+
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio"
+							name="inlineRadioOptions" id="inlineRadio1" value="option1">
+						<label class="form-check-label" for="inlineRadio1">TCC</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio"
+							name="inlineRadioOptions" id="inlineRadio2" value="option2">
+						<label class="form-check-label" for="inlineRadio2">PCC</label>
+					</div>
+
+					<button>Pesquisar</button>
+
+					</br> </br> </br> </br> <a class="btn btn-primary" style="margin-bottom: 10px" href="">Criar
+						Proposta</a> </br> </br> </br> </br>
+
+					<div class="table-responsive">
+						<table class="table table-striped table-sm">
+							<thead>
+								<tr>
+									<th>Aluno</th>
+									<th>Título</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Jhemys</td>
+									<td>Use de redes neurais para o mapeamento do coronavírus</td>
+									<td>aguardando aceite do professor orientador</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</main>
+			</div>
+
+		</div>
+	</div>
+</body>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Listagem de turma</title>
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	media="screen">
+</head>
+
+<body>
+	<div class="container">
+		<h1>Listagem de Turma</h1>
+
+		<a class="btn btn-primary" style="margin-bottom: 10px" href="/turma/formulario">Cadastrar</a>
+
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Ano</th>
+					<th>Semestre</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<th:block th:each="turma : ${turmas}">
+					<tr>
+						<td th:text="${turma.ano}"></td>
+						<td th:text="${turma.semestre}">
+						<td>
+						<a th:href="@{'/turma/' + ${turma.id} + '/editar'}"
+							href="#">Editar</a> <a
+							th:href="@{'/turma/' + ${turma.id} + '/excluir'}"
+							th:onclick="'return confirm(\'Deseja excluir turma?\')'" href="#">Excluir</a>
+						</td>
+
+
+					</tr>
+				</th:block>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		function confirmar(e) {
+
+			if (!confirm("Deseja excluir turma?")) {
+
+				e.preventDefault();
+			}
+		}
+	</script>
+</body>
+</html>

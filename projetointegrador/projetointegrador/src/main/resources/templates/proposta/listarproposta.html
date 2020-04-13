@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="pt-br"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta charset="UTF-8">
+<title>Listagem de Proposta</title>
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	media="screen">
+</head>
+
+<body>
+	<div class="container">
+		<h1>Listagem de Proposta</h1>
+
+
+
+		<table class="table table-bordered table-striped">
+
+			<form action="nomeAlfabetico" method="post">
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="filtros">Filtros</label>
+					</div>
+					<select class="custom-select" id="filtros">
+						<option selected>Escolha...</option>
+						<option value="1">Nome Aluno</option>
+						<option value="2">Data Início</option>
+						<option value="3">Nome Orientador</option>
+						<option value="4">Data Fim</option>
+						<option value="5">Turma / ano</option>
+					</select>
+				</div>
+
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio"
+						name="inlineRadioOptions" id="inlineRadio1" value="option1">
+					<label class="form-check-label" for="inlineRadio1">TCC</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio"
+						name="inlineRadioOptions" id="inlineRadio2" value="option2">
+					<label class="form-check-label" for="inlineRadio2">PCC</label>
+				</div>
+
+				<input type="submit" value="Pesquisar">
+
+			</form>
+			
+			<br><br><br>
+			
+			<a class="btn btn-primary" style="margin-bottom: 10px"
+				href="/proposta/formulario">Criar Proposta</a>
+			<thead>
+				<tr>
+					<th>nome</th>
+					<th>titulo</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+
+
+			<tbody>
+
+				<th:block th:each="proposta : ${propostas}">
+					<tr>
+						<td th:text="${proposta.nome}"></td>
+						<td th:text="${proposta.titulo}">
+						<td><a th:href="@{'/proposta/' + ${proposta.id} + '/editar'}"
+							href="#">Editar</a> <a
+							th:href="@{'/proposta/' + ${proposta.id} + '/excluir'}"
+							th:onclick="'return confirm(\'Deseja excluir proposta?\')'"
+							href="#">Excluir</a></td>
+
+
+					</tr>
+				</th:block>
+			</tbody>
+
+		</table>
+
+		</p:panel>
+		</h:form>
+	</div>
+
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		function confirmar(e) {
+
+			if (!confirm("Deseja excluir proposta?")) {
+
+				e.preventDefault();
+			}
+		}
+	</script>
+</body>
+</html>

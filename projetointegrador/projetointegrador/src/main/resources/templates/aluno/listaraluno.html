@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Listagem de alunos</title>
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	media="screen">
+</head>
+
+<body>
+	<div class="container">
+		<h1>Listagem de Alunos</h1>
+
+		<a class="btn btn-primary" style="margin-bottom: 10px"
+			href="/aluno/formulario">Cadastrar</a>
+
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>matricula</th>
+					<th>cpf</th>
+					<th>turma</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<th:block th:each="aluno : ${alunos}">
+					<tr>
+						<td th:text="${aluno.nome}">Bruno</td>
+						<td th:text="${aluno.matricula}">20181</td>
+						<td th:text="${aluno.cpf}">2313541651</td>
+						<td>1°semestre</td>
+						<td><a th:href="@{'/aluno/' + ${aluno.id} + '/editar'}"
+							href="#">Editar</a> <a
+							th:href="@{'/aluno/' + ${aluno.id} + '/excluir'}"
+							th:onclick="'return confirm(\'Deseja excluir aluno?\')'" href="#">Excluir</a>
+						</td>
+					</tr>
+				</th:block>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="/bootstrap/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		function confirmar(e) {
+
+			if (!confirm("Deseja excluir aluno?")) {
+
+				e.preventDefault();
+			}
+		}
+	</script>
+</body>
+</html>
