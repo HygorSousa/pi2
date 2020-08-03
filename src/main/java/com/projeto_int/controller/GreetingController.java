@@ -30,9 +30,15 @@ public class GreetingController {
 		// ###################################################### criar sessao
 		try {
 			autenticacaoEncoded = Base64.getEncoder().encodeToString(
+<<<<<<< HEAD
 					("apikey:xnH_yGvMwMxSZIVNkYqoHj1e2uNos5QSJ8YvcjN6Bf_4").getBytes(StandardCharsets.UTF_8));
 
 			String url = "https://api.us-south.assistant.watson.cloud.ibm.com/instances/a9e649e9-e1bc-4ee1-9a3c-f93128901e70/v2/assistants/fcccd629-6733-4725-ba80-79b91765024f/sessions?version=2020-04-01";
+=======
+					("apikey:6Cxlyu6vPmJPox8ffN-5b7SQVNVPwSw6t_mwZ9dhHoKn").getBytes(StandardCharsets.UTF_8));
+
+			String url = "https://api.us-south.assistant.watson.cloud.ibm.com/instances/ad119c4f-b237-4779-8a18-88a1a3814941/v2/assistants/23cb2a6a-b01d-4e66-9599-699570718b29/sessions?version=2020-04-01";
+>>>>>>> e14946ebad2f6bb420bec9ee930702ef4d862a27
 
 			HttpsURLConnection httpClient = (HttpsURLConnection) new URL(url).openConnection();
 
@@ -81,7 +87,11 @@ public class GreetingController {
 
 		// ###################################################### enviar pro bot
 		try {
+<<<<<<< HEAD
 			String url = "https://api.us-south.assistant.watson.cloud.ibm.com/instances/a9e649e9-e1bc-4ee1-9a3c-f93128901e70/v2/assistants/fcccd629-6733-4725-ba80-79b91765024f/sessions/"
+=======
+			String url = "https://api.us-south.assistant.watson.cloud.ibm.com/instances/ad119c4f-b237-4779-8a18-88a1a3814941/v2/assistants/23cb2a6a-b01d-4e66-9599-699570718b29/sessions/"
+>>>>>>> e14946ebad2f6bb420bec9ee930702ef4d862a27
 					+ sessionId + "/message?version=2020-04-01";
 
 			HttpsURLConnection httpClient = (HttpsURLConnection) new URL(url).openConnection();
@@ -150,4 +160,8 @@ public class GreetingController {
 		return greeting;
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e14946ebad2f6bb420bec9ee930702ef4d862a27

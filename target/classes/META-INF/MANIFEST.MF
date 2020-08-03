@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 Manifest-Version: 1.0
 Build-Jdk-Spec: 13
 Implementation-Title: projeto_integrador
 Implementation-Version: 0.0.1-SNAPSHOT
 Created-By: Maven Integration for Eclipse
 
+=======
+Manifest-Version: 1.0
+Build-Jdk-Spec: 13
+Implementation-Title: projeto_integrador
+Implementation-Version: 0.0.1-SNAPSHOT
+Created-By: Maven Integration for Eclipse
+
+>>>>>>> e14946ebad2f6bb420bec9ee930702ef4d862a27
