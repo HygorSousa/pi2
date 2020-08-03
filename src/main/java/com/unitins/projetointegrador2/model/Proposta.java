@@ -18,7 +18,7 @@ public class Proposta extends AuditoriaModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private String nome_aluno;
@@ -26,7 +26,7 @@ public class Proposta extends AuditoriaModel implements Serializable {
 	private String titulo;
 	private String turma;
 
-	private String status;
+	private Status status;
 
 	private String professor;
 
@@ -83,11 +83,11 @@ public class Proposta extends AuditoriaModel implements Serializable {
 		this.data_criacao = data_criacao;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

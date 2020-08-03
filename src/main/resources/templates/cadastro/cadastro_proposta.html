@@ -69,9 +69,13 @@
 							</div>
 
 							<div class="form-group">
-								<label for="status"> Status: </label> <input type="text"
-									name="status" th:field="*{status}" id="status"
-									class="form-control">
+								<label for="status"> Status: </label>
+								<select class="custom-select" id="status" th:field="*{status}">
+									<option th:each="sts : ${T(com.unitins.projetointegrador2.model.Status).values()}"
+											th:text="${sts.label}"
+											th:value="${sts.valor}">
+									</option>
+								</select>
 							</div>
 
 							<div class="form-group">

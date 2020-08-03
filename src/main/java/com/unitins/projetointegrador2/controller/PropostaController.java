@@ -2,6 +2,7 @@ package com.unitins.projetointegrador2.controller;
 
 import java.util.Optional;
 
+import com.unitins.projetointegrador2.model.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -101,5 +102,9 @@ public class PropostaController {
 		modelAndView.addObject("propostaobj", proposta.get());
 
 		return modelAndView;
+	}
+
+	public Status[] getListaStatus() {
+		return Status.values();
 	}
 }
