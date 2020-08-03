@@ -31,6 +31,11 @@ public class AlunoController {
 
 		return modelAndView;
 	}
+	@GetMapping("listar_banca")
+	public String listarBanca() {
+		return "listar_banca";
+	}
+
 
 	@RequestMapping(method = RequestMethod.POST, value = "**/salvar_aluno")
 	public ModelAndView salvar(Aluno aluno) {
@@ -62,35 +67,35 @@ public class AlunoController {
 	public ModelAndView excluir(@PathVariable("id_aluno") Integer id_aluno) {
 
 		alunoRepository.deleteById(id_aluno);
-	
+
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastro_aluno");
 		modelAndView.addObject("alunos", alunoRepository.findAll());
-		
+
 		modelAndView.addObject("aluno_obj", new Aluno());
-		
+
 		return modelAndView;
 	}
-	
+
 	@GetMapping("/lista_aluno")
 	public ModelAndView listar() {
-		
+
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastro_aluno");
 		Iterable<Aluno> alunosIt = alunoRepository.findAll();
-		
+
 		modelAndView.addObject("alunos", alunosIt);
 		modelAndView.addObject("aluno_obj", new Aluno());
-		
+
 		return modelAndView;
 	}
-	
+
 	@PostMapping("**/pesquisar_aluno")
 	public ModelAndView pesquisar(@RequestParam("pesquisa_nome") String pesquisa_nome) {
-		
+
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastro_aluno");
 		modelAndView.addObject("alunos", alunoRepository.findAlunoByNome(pesquisa_nome));
-		
+
 		modelAndView.addObject("aluno_obj", new Aluno());
-		
+
 		return modelAndView;
 	}
 }

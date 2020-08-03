@@ -1,32 +1,42 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="br">
 <head>
-<meta charset="UTF-8">
-<title>Index</title>
-
-<!--Import Google Icon Font-->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-
-<!--Import materialize.css-->
-<link type="text/css" rel="stylesheet"
-	href="/materialize/css/materialize.min.css" media="screen,projection" />
-
-<!--Import materialize.min.css-->
-<link type="text/css" rel="stylesheet"
-	href="/materialize/css/materialize.min.css" media="screen,projection" />
-
+<title>Projeto Integrador II</title>
+<div th:replace="fragments/header :: header-css"></div>
+<div th:replace="fragments/header :: header-js"></div>
 </head>
+<body class="hold-transition sidebar-mini">
+	<div class="wrapper">
+		<div th:replace="fragments/header :: header"></div>
+		<div th:replace="fragments/sidebar :: sidebar"></div>
+		<div class="content-wrapper">
+			<div class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h2>UNIDOCS</h2>
+							<h6>Gerenciamento de Documentos - Unitins</h6>
+						</div>
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item"><a href="/">Inicio</a></li>
+								<li class="breadcrumb-item active">Início</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</div>
 
-</head>
-<body>
+			<div class="content">
+				<div class="container-fluid">
 
-	<h1>Sistema de Cadasro de aluno</h1>
-	<a href="/cadastro_aluno"> Cadastrar aluno </a>
-
-	<!--JavaScript at end of body for optimized loading-->
-	<script type="text/javascript" src="/materialize/js/materialize.js"></script>
-	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+				</div>
+			</div>
+		</div>
+		<div th:replace="fragments/sidebar :: sidebar-control"></div>
+		<div th:replace="fragments/footer :: footer"></div>
+	</div>
+	
+	<script src="https://use.fontawesome.com/ff8b5d31be.js"></script>
 </body>
 </html>
