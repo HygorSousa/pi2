@@ -5,8 +5,8 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
 @Data
+@Entity
 public class Turma {
 
     @Id
@@ -19,4 +19,13 @@ public class Turma {
 
     @OneToMany(mappedBy = "turma")
     private List<Aluno> alunos;
+
+    public Turma() {
+    }
+
+    public Turma(Integer ano, Integer semestre, List<Aluno> alunos) {
+        this.ano = ano;
+        this.semestre = semestre;
+        this.alunos = alunos;
+    }
 }
