@@ -6,20 +6,27 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class DbInit implements CommandLineRunner {
-    private final PessoaRepository pessoaRepository;
-    private final ProcessoOrientacaoRepository processoOrientacaoRepository;
     private final AlunoRepository alunoRepository;
     private final TurmaRepository turmaRepository;
+    private final BancaRepository bancaRepository;
+    private final PessoaRepository pessoaRepository;
+    private final ProfessorRepository professorRepository;
+    private final AreaConhecimentoRepository areaConhecimentoRepository;
+    private final ProcessoOrientacaoRepository processoOrientacaoRepository;
 
-    public DbInit(TurmaRepository turmaRepository, PessoaRepository pessoaRepository, ProcessoOrientacaoRepository processoOrientacaoRepository, AlunoRepository alunoRepository) {
-        this.pessoaRepository = pessoaRepository;
-        this.processoOrientacaoRepository = processoOrientacaoRepository;
+    public DbInit(BancaRepository bancaRepository, ProfessorRepository professorRepository, AreaConhecimentoRepository areaConhecimentoRepository, TurmaRepository turmaRepository, PessoaRepository pessoaRepository, ProcessoOrientacaoRepository processoOrientacaoRepository, AlunoRepository alunoRepository) {
         this.alunoRepository = alunoRepository;
         this.turmaRepository = turmaRepository;
+        this.bancaRepository = bancaRepository;
+        this.pessoaRepository = pessoaRepository;
+        this.professorRepository = professorRepository;
+        this.areaConhecimentoRepository = areaConhecimentoRepository;
+        this.processoOrientacaoRepository = processoOrientacaoRepository;
     }
 
     @Override
@@ -36,10 +43,11 @@ public class DbInit implements CommandLineRunner {
         this.pessoaRepository.saveAll(users);
 
         initAluno();
-        initProcessoOrientacao(aluno, professor);
         initTurma();
-
-
+        initProfessor();
+        initBanca();
+        initAreaConhecimento();
+        initProcessoOrientacao(aluno, professor);
     }
 
     private void initAluno(){
@@ -56,6 +64,16 @@ public class DbInit implements CommandLineRunner {
         Aluno aluno10 = new Aluno("Ginny Evans",    "336330429", "89433127179", new BCryptPasswordEncoder().encode("alu123"), "ALUNO");
         List<Pessoa> alunos = Arrays.asList(aluno, aluno1,aluno2,aluno3,aluno4,aluno5,aluno6,aluno7,aluno8,aluno9,aluno10);
         this.pessoaRepository.saveAll(alunos);
+    }
+
+    private void initProfessor(){
+        Professor professor1 = new Professor("Lavinia Cavalcanti", "446544910", "99753154101", new BCryptPasswordEncoder().encode("pro123"), "PROFESSOR");
+        Professor professor2 = new Professor("Eduardo Lima", "446544911", "99753154102", new BCryptPasswordEncoder().encode("pro123"), "PROFESSOR");
+        Professor professor3 = new Professor("Matilde Cavalcanti", "446544912", "99753154103", new BCryptPasswordEncoder().encode("pro123"), "PROFESSOR");
+        Professor professor4 = new Professor("Lois Preston", "446544913", "99753154104", new BCryptPasswordEncoder().encode("pro123"), "PROFESSOR");
+        Professor professor5 = new Professor("Christopher Mosley", "446544914", "99753154105", new BCryptPasswordEncoder().encode("pro123"), "PROFESSOR");
+        List<Professor> professors = Arrays.asList(professor1,professor2,professor3,professor4,professor5);
+        this.pessoaRepository.saveAll(professors);
     }
 
     private void initProcessoOrientacao(Aluno aluno, Professor professor){
@@ -85,5 +103,20 @@ public class DbInit implements CommandLineRunner {
         Turma turmaB = new Turma(2019, 1, this.alunoRepository.findAll());
         List<Turma> turmas = Arrays.asList(turmaA,turmaB);
         this.turmaRepository.saveAll(turmas);
+    }
+
+    private void initAreaConhecimento(){
+        AreaConhecimento areaA = new AreaConhecimento("Ciências Exatas");
+        AreaConhecimento areaD = new AreaConhecimento("Ciências Humanas");
+        AreaConhecimento areaB = new AreaConhecimento("Ciências Biologicas");
+        AreaConhecimento areaC = new AreaConhecimento("Ciências Exatas e da Terra");
+        AreaConhecimento areaE = new AreaConhecimento("Ciências Sociais Aplicadas");
+        List<AreaConhecimento> areas = Arrays.asList(areaA,areaB,areaC,areaD,areaE);
+        this.areaConhecimentoRepository.saveAll(areas);
+    }
+
+    private void initBanca(){
+        Banca bancaA = new Banca(new Date(), new Date(), this.professorRepository.findAll());
+        this.bancaRepository.save(bancaA);
     }
 }

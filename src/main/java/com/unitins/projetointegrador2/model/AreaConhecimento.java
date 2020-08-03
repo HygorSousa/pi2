@@ -18,4 +18,11 @@ public class AreaConhecimento extends AuditoriaModel {
     private int id;
 
     private String descricao;
+
+    public AreaConhecimento(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public AreaConhecimento() {
+    }
 }
