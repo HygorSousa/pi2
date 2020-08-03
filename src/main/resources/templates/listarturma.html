@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="br">
+<head>
+<meta charset="UTF-8">
+<title>Projeto Integrador II</title>
+<div th:replace="fragments/header :: header-css"></div>
+<div th:replace="fragments/header :: header-js"></div>
+</head>
+<body class="hold-transition sidebar-mini">
+	<div class="wrapper">
+		<div th:replace="fragments/header :: header"></div>
+		<div th:replace="fragments/sidebar :: sidebar"></div>
+		<div class="content-wrapper">
+			<div class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h1 class="m-0 text-dark">
+								Listar Turma <small></small>
+							</h1>
+						</div>
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item"><a href="#">Home</a></li>
+								<li class="breadcrumb-item active">Starter Page</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="content">
+				<div class="container-fluid">
+
+					<a class="btn btn-primary" style="margin-bottom: 10px"
+						href="/formularioturma">Cadastrar</a>
+
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Ano</th>
+								<th>Semestre</th>
+								<th>Ações</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<th:block th:each="turma : ${turmas}">
+								<tr>
+									<td th:text="${turma.ano}">2018</td>
+									<td th:text="${turma.semestre}">1°Semestre</td>
+									<td><a th:href="@{'/' + ${turma.id} + '/editar'}"
+										href="#">Editar</a> <a
+										th:href="@{'/' + ${turma.id} + '/excluir'}"
+										th:onclick="'return confirm(\'Deseja excluir essa Turma?\')'"
+										href="#">Excluir</a></td>
+								</tr>
+							</th:block>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+		<div th:replace="fragments/sidebar :: sidebar-control"></div>
+		<div th:replace="fragments/footer :: footer"></div>
+	</div>
+	<script type="text/javascript">
+		function confirmar(e) {
+
+			if (!confirm("Deseja excluir essa turma?")) {
+
+				e.preventDefault();
+			}
+		}
+	</script>
+</body>
+</html>

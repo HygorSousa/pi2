@@ -23,19 +23,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/").permitAll()
-                .antMatchers(HttpMethod.GET, "/reset").permitAll()
-                .antMatchers(HttpMethod.POST, "/reset").permitAll()
-                .antMatchers(HttpMethod.GET, "/forgot").permitAll()
-                .antMatchers(HttpMethod.POST, "/forgot").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login").permitAll()
-                .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
-                .and()
-                .rememberMe().tokenValiditySeconds(1800).rememberMeParameter("remember-me");
+                .antMatchers(HttpMethod.GET, "/").permitAll();
+               
     }
 
     @Override
