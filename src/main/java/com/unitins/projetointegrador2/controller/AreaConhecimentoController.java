@@ -60,7 +60,7 @@ public class AreaConhecimentoController {
 	}
 	
 	@GetMapping("/editararea_con/{idarea_con}")
-	public ModelAndView editar(@PathVariable("idarea_con") Integer idarea_con) {
+	public ModelAndView editar(@PathVariable("idarea_con") Long idarea_con) {
 		
 		Optional<AreaConhecimento> area_con = area_conRepository.findById(idarea_con);
 		
@@ -71,7 +71,7 @@ public class AreaConhecimentoController {
 	}
 	
 	@GetMapping("/removerarea_con/{idarea_con}")
-	public ModelAndView excluir(@PathVariable("idarea_con") Integer idarea_con) {
+	public ModelAndView excluir(@PathVariable("idarea_con") Long idarea_con) {
 		
 		area_conRepository.deleteById(idarea_con);
 		

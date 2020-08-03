@@ -7,12 +7,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.unitins.projetointegrador2.model.*;
+import com.unitins.projetointegrador2.model.Proposta;
 
 @Repository
 @Transactional
-public interface AreaConhecimentoRepository extends CrudRepository<AreaConhecimento, Long> {
+public interface PropostaRepository extends CrudRepository<Proposta, Long> {
 
-	@Query("select ac from AreaConhecimento ac where ac.nome like %?1%")
-	List<AreaConhecimento> findAreaConhecimentoByNome(String nome);
+	@Query("select t from Proposta t where t.titulo like %?1%")
+    List<Proposta> findPropostaByTitulo(String titulo);
 }

@@ -11,23 +11,23 @@ import javax.persistence.Id;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-public class AreaConhecimento extends AuditoriaModel {
+public class AreaConhecimento {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
 	private String nome;
 
 	private String descricao;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
