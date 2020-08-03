@@ -11,7 +11,7 @@ import com.unitins.projetointegrador2.model.Proposta;
 
 @Repository
 @Transactional
-public interface PropostaRepository extends CrudRepository<Proposta, Long> {
+public interface PropostaRepository extends CrudRepository<Proposta, Integer> {
 
 	@Query("select t from Proposta t where t.titulo like %?1%")
     List<Proposta> findPropostaByTitulo(String titulo);

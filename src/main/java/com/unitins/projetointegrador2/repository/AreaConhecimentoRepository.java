@@ -11,7 +11,7 @@ import com.unitins.projetointegrador2.model.*;
 
 @Repository
 @Transactional
-public interface AreaConhecimentoRepository extends CrudRepository<AreaConhecimento, Long> {
+public interface AreaConhecimentoRepository extends CrudRepository<AreaConhecimento, Integer> {
 
 	@Query("select ac from AreaConhecimento ac where ac.nome like %?1%")
 	List<AreaConhecimento> findAreaConhecimentoByNome(String nome);

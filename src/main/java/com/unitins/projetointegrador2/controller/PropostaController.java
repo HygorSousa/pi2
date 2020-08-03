@@ -60,7 +60,7 @@ public class PropostaController {
 	}
 	
 	@GetMapping("/editarprop/{idprop}")
-	public ModelAndView editar(@PathVariable("idprop") Long idprop) {
+	public ModelAndView editar(@PathVariable("idprop") Integer idprop) {
 		
 		Optional<Proposta> proposta = propostaRepository.findById(idprop);
 		
@@ -71,7 +71,7 @@ public class PropostaController {
 	}
 	
 	@GetMapping("/removerprop/{idprop}")
-	public ModelAndView excluir(@PathVariable("idprop") Long idprop) {
+	public ModelAndView excluir(@PathVariable("idprop") Integer idprop) {
 		
 		propostaRepository.deleteById(idprop);
 		
@@ -93,7 +93,7 @@ public class PropostaController {
 	}
 	
 	@GetMapping("/detalhes_processo/{idproposta}")
-	public ModelAndView detalhes(@PathVariable("idproposta") Long idproposta) {
+	public ModelAndView detalhes(@PathVariable("idproposta") Integer idproposta) {
 
 		Optional<Proposta> proposta = propostaRepository.findById(idproposta);
 

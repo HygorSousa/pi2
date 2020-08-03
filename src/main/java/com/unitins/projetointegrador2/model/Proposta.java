@@ -13,13 +13,13 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class Proposta implements Serializable {
+public class Proposta extends AuditoriaModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private Integer id;
 
 	private String nome_aluno;
 	private String descricao;
@@ -34,11 +34,11 @@ public class Proposta implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date data_criacao;
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
