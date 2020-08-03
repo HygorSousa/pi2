@@ -4,8 +4,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,8 +20,6 @@ public class Pessoa extends AuditoriaModel implements org.springframework.securi
 
     private String matricula;
 
-    @Email(message = "Por favor, informe um e-mail válido")
-    @NotEmpty(message = "Please provide an e-mail")
     private String email;
 
     private String cpf;
