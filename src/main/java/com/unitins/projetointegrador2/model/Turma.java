@@ -2,6 +2,7 @@ package com.unitins.projetointegrador2.model;
 
 import java.util.List;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,8 +11,9 @@ import javax.persistence.OneToMany;
 
 import lombok.Data;
 
-@Entity
+
 @Data
+@Entity
 public class Turma {
 
 	@Id
@@ -25,11 +27,17 @@ public class Turma {
     @OneToMany(mappedBy = "turma")
     private List<Aluno> alunos;
 
+    public Turma() {
+    }
+
+    public Turma(Integer ano, Integer semestre, List<Aluno> alunos) {
+        this.ano = ano;
+        this.semestre = semestre;
+        this.alunos = alunos;
+    }
 	public Integer getId() {
 		return id;
 	}
-	
-	
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -49,25 +57,18 @@ public class Turma {
 
 	public void setSemestre(String semestre) {
 		this.semestre = semestre;
-	}
-	
-	
+  }
 
 	public List<Aluno> getAlunos() {
 		return alunos;
 	}
 
-
-
 	public void setAlunos(List<Aluno> alunos) {
 		this.alunos = alunos;
 	}
-
-
 
 	@Override
 	public String toString() {
 		return "Turma [id=" + id + ", ano=" + ano + ", semestre=" + semestre + "]";
 	}
-    
 }

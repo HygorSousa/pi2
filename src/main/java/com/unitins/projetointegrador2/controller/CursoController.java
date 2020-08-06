@@ -2,13 +2,12 @@ package com.unitins.projetointegrador2.controller;
 
 import com.unitins.projetointegrador2.model.Curso;
 import com.unitins.projetointegrador2.service.CursoService;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.ConstraintViolationException;
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/curso")
@@ -39,7 +38,7 @@ public class CursoController {
     }
 
     @PostMapping()
-    public String salvarCurso(@Valid Curso curso, BindingResult result, Model model) {
+    public String salvarCurso( Curso curso, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "redirect:/criarCurso";
         }

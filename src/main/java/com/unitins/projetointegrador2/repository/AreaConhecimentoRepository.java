@@ -1,18 +1,17 @@
 package com.unitins.projetointegrador2.repository;
 
-import java.util.List;
-
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import com.unitins.projetointegrador2.model.AreaConhecimento;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.unitins.projetointegrador2.model.*;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
-@Transactional
-public interface AreaConhecimentoRepository extends CrudRepository<AreaConhecimento, Integer> {
+public interface AreaConhecimentoRepository extends JpaRepository<AreaConhecimento, String> {
 
-	@Query("select ac from AreaConhecimento ac where ac.nome like %?1%")
-	List<AreaConhecimento> findAreaConhecimentoByNome(String nome);
+    Optional<List<AreaConhecimento>> findByDescricao(String descricao);
+    Optional<List<AreaConhecimento>> findById(Integer id);
+	  List<AreaConhecimento> findAreaConhecimentoByNome(String nome);
+
 }

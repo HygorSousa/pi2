@@ -27,4 +27,13 @@ public class Banca extends AuditoriaModel {
             joinColumns = @JoinColumn(name = "idBanca"),
             inverseJoinColumns = @JoinColumn(name = "idProfessor"))
     private List<Professor> professores;
+
+    public Banca(Date data, Date hora, List<Professor> professores) {
+        this.data = data;
+        this.hora = hora;
+        this.professores = professores;
+    }
+
+    public Banca() {
+    }
 }
