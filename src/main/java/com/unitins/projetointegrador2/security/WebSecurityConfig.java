@@ -23,14 +23,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-		http.csrf()
-		.disable() // Desativa as configuracoes padroes de memoria do Spring
-		.authorizeRequests() // Permitir restricao de acesso
-		.antMatchers(HttpMethod.GET, "/").permitAll() // Qualquer usuario acessa o inicio
-		.anyRequest().authenticated()
-		.and().formLogin().permitAll() // Permite qualquer usuario 
-		.and().logout() // Mapeando URL de logout e ivalidando autenticacao de usuario
-		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/").permitAll();
+               
     }
 
 //    @Override
@@ -57,10 +52,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
     @Override
     public void configure(WebSecurity web) {
+<<<<<<< HEAD
 //        web.ignoring().antMatchers("/bower_components/**", "/dist/**", "/plugins/**");
         
 		// Libera acesso ao estilo das paginas (static)
 		web.ignoring().antMatchers("/templates/**");
 		web.ignoring().antMatchers("/imagens/**");
+=======
+        web.ignoring().antMatchers("/dist/**", "/plugins/**");
+>>>>>>> master
     }
 }
