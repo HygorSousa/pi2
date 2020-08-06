@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="br">
+<head>
+<title>Projeto Integrador II</title>
+<div th:replace="fragments/header :: header-css"></div>
+<div th:replace="fragments/header :: header-js"></div>
+
+<style type="text/css">
+::-webkit-input-placeholder {
+	color: black;
+}
+</style>
+
+</head>
+
+<body class="hold-transition sidebar-mini">
+	<div class="wrapper">
+		<div th:replace="fragments/header :: header"></div>
+		<div th:replace="fragments/sidebar :: sidebar"></div>
+		<div class="content-wrapper">
+			<div class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h2>UNIDOCS</h2>
+							<h6>Gerenciamento de Documentos - Unitins</h6>
+						</div>
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item"><a href="/">Inicio</a></li>
+								<li class="breadcrumb-item active">Início</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="card">
+						<div class="card-body">
+							<div class="form-group" th:each="p : ${propostaobj}">
+								<form>
+									<div class="form-row">
+										<div class="form-group col-md-4">
+											<label for="aluno_proposta">Nome do Aluno:</label> 
+											<br />
+											<span th:text="${p.nome_aluno}" class="form-control" readonly="readonly"></span>
+										</div>
+										<div class="form-group col-md-4">
+											<label for="turma_proposta">Turma/Ano:</label> 
+											<br />
+											<span th:text="${p.turma}" class="form-control" readonly="readonly"></span>
+										</div>
+										<div class="form-group col-md-4">
+											<label for="professor_proposta">Professor da
+												Proposta:</label> 
+											<br />
+											<span th:text="${p.professor}" class="form-control" readonly="readonly"></span>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-4">
+											<label for="titulo_prop">Título do PCC/TCC:</label> 
+											<br />
+											<span th:text="${p.titulo}" class="form-control" readonly="readonly"></span>
+										</div>
+										<div class="form-group col-md-4">
+											<label for="data_cri">Data da Criação:</label> 
+											<br />
+											<span th:text="${p.data_criacao}" class="form-control" readonly="readonly"></span>
+										</div>
+										<div class="form-group col-md-4">
+											<label for="status_proposta">Status da Proposta:</label>
+											<br />
+											<span th:text="${p.status}" class="form-control" readonly="readonly"></span> 
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-12">
+											<label for="titulo_proposta">Resumo da Proposta:</label>
+											<textarea class="form-control" th:text="${p.descricao}"
+												id="titulo_proposta" readonly="readonly"></textarea>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div th:replace="fragments/sidebar :: sidebar-control"></div>
+		<div th:replace="fragments/footer :: footer"></div>
+	</div>
+
+	<script src="https://use.fontawesome.com/ff8b5d31be.js"></script>
+</body>
+</html>

@@ -12,5 +12,6 @@ public interface AreaConhecimentoRepository extends JpaRepository<AreaConhecimen
 
     Optional<List<AreaConhecimento>> findByDescricao(String descricao);
     Optional<List<AreaConhecimento>> findById(Integer id);
+	  List<AreaConhecimento> findAreaConhecimentoByNome(String nome);
 
 }

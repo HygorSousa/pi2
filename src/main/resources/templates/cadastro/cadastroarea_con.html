@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="br">
+<head>
+<title>Projeto Integrador II</title>
+<div th:replace="fragments/header :: header-css"></div>
+<div th:replace="fragments/header :: header-js"></div>
+
+</head>
+<body class="hold-transition sidebar-mini">
+	<div class="wrapper">
+		<div th:replace="fragments/header :: header"></div>
+		<div th:replace="fragments/sidebar :: sidebar"></div>
+		<div class="content-wrapper">
+			<div class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-6">
+							<h2>Cadastro de Area do Conhecimento</h2>
+							<h6>Gerenciamento Administrativo</h6>
+						</div>
+						<div class="col-sm-6">
+							<ol class="breadcrumb float-sm-right">
+								<li class="breadcrumb-item"><a href="/">Inicio</a></li>
+								<li class="breadcrumb-item active">Area de Conhecimento</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="card">
+						<div class="card-body">
+
+							<div class="row">
+								<form action="salvararea_con" id="formarea_con" method="post"
+									th:object="${area_conobj}" class="col-md-12">
+									<!-- post igual como foi mapeado -->
+									<div class="form-row">
+										<div class="form-group col-md-4">
+											<label for="id"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;ID:</label> <input type="text" name="id"
+												th:field="*{id}" class="form-control" id="id"
+												readonly="readonly" placeholder="Id da Area de Conhecimento">
+										</div>
+										<div class="form-group col-md-8">
+											<label for="nome"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Nome:</label> <input type="text"
+												name="nome" th:field="*{nome}" class="form-control"
+												id="nome" placeholder="Nome da Area de Conhecimento">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="descricao"><i class="fa fa-comment" aria-hidden="true"></i>&nbsp;&nbsp;Descrição:</label>
+										<textarea class="form-control" name="descricao"
+											th:field="*{descricao}" id="descricao"
+											placeholder="Descrição da Area de Conhecimento"></textarea>
+									</div>
+
+									<input class="btn btn-outline-success" type="submit"
+										value="Salvar"> <a class="btn btn-outline-secondary"
+										href="/cadastroarea_con">Cancelar</a>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="card">
+						<div class="card-body">
+
+							<div class="row">
+								<form action="pesquisararea_con" id="pesquisararea_con"
+									method="post" class="col-md-12">
+									<!-- post igual como foi mapeado -->
+									<div class="form-group">
+										<label for="nomepesquisa"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp; Pesquisar por nome:</label> <input
+											type="text" name="nomepesquisa" class="form-control"
+											id="nomepesquisa"
+											placeholder="Digite o nome da Area de Conhecimento">
+									</div>
+									<input class="btn btn-outline-dark" type="submit"
+										value="Pesquisar"> <a class="btn btn-outline-dark"
+										href="/listaareas_con"> Listar todas </a>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="content">
+				<div class="container-fluid">
+
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Nome</th>
+									<th>Descricao</th>
+									<th>Editar</th>
+									<th>Excluir</th>
+								</tr>
+							</thead>
+
+							<tr th:each="area_con : ${areas_con}">
+
+								<td th:text="${area_con.id}"></td>
+								<td th:text="${area_con.nome}"></td>
+								<td th:text="${area_con.descricao}"></td>
+								<td><a
+									th:href="@{/editararea_con/{idarea_con}(idarea_con=${area_con.id})}">
+										Editar </a></td>
+								<td><a
+									th:href="@{/removerarea_con/{idarea_con}(idarea_con=${area_con.id})}">
+										Excluir </a></td>
+							</tr>
+
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div th:replace="fragments/sidebar :: sidebar-control"></div>
+		<div th:replace="fragments/footer :: footer"></div>
+	</div>
+
+	<script type="text/javascript">
+		function validarCampos() {
+
+			nome = document.getElementById('nome').value;
+			descricao = document.getElementById('descricao').value;
+
+			if (nome === '') {
+
+				alert('O Nome deve ser informado.');
+				return false;
+			}
+
+			else if (descricao === '') {
+
+				alert('A Descrição deve ser informada.');
+				return false;
+			}
+
+			return true;
+		}
+	</script>
+</body>
+</html>

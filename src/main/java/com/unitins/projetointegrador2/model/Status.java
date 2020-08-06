@@ -24,6 +24,20 @@ public enum Status {
         this.label = label;
     }
 
+    // Retorna um Status a partir de um valor inteiro
+    public static Status valueOf(int value) {
+
+        for (Status status : Status.values()) {
+
+            if (status.getValor() == value) {
+
+                return status;
+            }
+        }
+
+        return null;
+    }
+
     public int getValor() {
         return valor;
     }
