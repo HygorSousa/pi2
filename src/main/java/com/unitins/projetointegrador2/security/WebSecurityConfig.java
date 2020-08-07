@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -24,42 +23,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/").permitAll();
-               
+                .antMatchers(HttpMethod.GET, "/").permitAll()
+                .antMatchers(HttpMethod.GET, "/reset").permitAll()
+                .antMatchers(HttpMethod.POST, "/reset").permitAll()
+                .antMatchers(HttpMethod.GET, "/forgot").permitAll()
+                .antMatchers(HttpMethod.POST, "/forgot").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login").permitAll()
+                .and()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
+                .and()
+                .rememberMe().tokenValiditySeconds(1800).rememberMeParameter("remember-me");
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsService)
-//                .passwordEncoder(new BCryptPasswordEncoder());
-//    }
-    
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsService)
-//                .passwordEncoder(new BCryptPasswordEncoder());
-//    }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(new BCryptPasswordEncoder());
+    }
 
-	// Cria autenticacao do usuario com BD ou em memoria
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-		auth.inMemoryAuthentication().passwordEncoder(NoOpPasswordEncoder.getInstance())
-		.withUser("root")
-		.password("123")
-		.roles("ADMIN");
-	}
-	
     @Override
     public void configure(WebSecurity web) {
-<<<<<<< HEAD
-//        web.ignoring().antMatchers("/bower_components/**", "/dist/**", "/plugins/**");
-        
-		// Libera acesso ao estilo das paginas (static)
-		web.ignoring().antMatchers("/templates/**");
-		web.ignoring().antMatchers("/imagens/**");
-=======
-        web.ignoring().antMatchers("/dist/**", "/plugins/**");
->>>>>>> master
+        web.ignoring().antMatchers("/bower_components/**", "/dist/**", "/plugins/**");
     }
 }

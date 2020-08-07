@@ -30,11 +30,12 @@ public class Turma {
     public Turma() {
     }
 
-    public Turma(Integer ano, Integer semestre, List<Aluno> alunos) {
+    public Turma(Integer ano, String semestre, List<Aluno> alunos) {
         this.ano = ano;
         this.semestre = semestre;
         this.alunos = alunos;
     }
+
 	public Integer getId() {
 		return id;
 	}

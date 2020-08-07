@@ -1,5 +1,6 @@
 package com.unitins.projetointegrador2.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +63,7 @@ public class AreaConhecimentoController {
 	@GetMapping("/editararea_con/{idarea_con}")
 	public ModelAndView editar(@PathVariable("idarea_con") Integer idarea_con) {
 		
-		Optional<AreaConhecimento> area_con = area_conRepository.findById(idarea_con);
+		Optional<List<AreaConhecimento>> area_con = area_conRepository.findById(idarea_con);
 		
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastroarea_con");
 		modelAndView.addObject("area_conobj", area_con.get());

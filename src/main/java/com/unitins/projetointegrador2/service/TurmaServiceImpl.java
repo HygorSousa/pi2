@@ -5,10 +5,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+import com.unitins.projetointegrador2.repository.TurmaRepository;
 import org.springframework.stereotype.Service;
 
 import com.unitins.projetointegrador2.model.Turma;
-import com.unitins.projetointegrador2.security.TurmaRepository;
 
 @Service
 public class TurmaServiceImpl implements TurmaService {

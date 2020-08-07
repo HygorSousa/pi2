@@ -11,7 +11,11 @@ import java.util.Optional;
 public interface AreaConhecimentoRepository extends JpaRepository<AreaConhecimento, String> {
 
     Optional<List<AreaConhecimento>> findByDescricao(String descricao);
+
     Optional<List<AreaConhecimento>> findById(Integer id);
-	  List<AreaConhecimento> findAreaConhecimentoByNome(String nome);
+
+    void deleteById(Integer id);
+
+    List<AreaConhecimento> findAreaConhecimentoByNome(String nome);
 
 }

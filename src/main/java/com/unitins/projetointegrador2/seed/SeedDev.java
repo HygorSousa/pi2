@@ -1,24 +1,22 @@
 package com.unitins.projetointegrador2.seed;
 
+import com.unitins.projetointegrador2.repository.TurmaRepository;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import com.unitins.projetointegrador2.model.Turma;
-import com.unitins.projetointegrador2.security.TurmaRepository;
 
 @Component
 public class SeedDev implements ApplicationListener<ContextRefreshedEvent> {
 	
 	private TurmaRepository turmaRepository;
 	
-	
 
 	public SeedDev(TurmaRepository turmaRepository) {
 		super();
 		this.turmaRepository = turmaRepository;
 	}
-
 
 
 	@Override
