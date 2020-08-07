@@ -22,7 +22,7 @@ public class Turma {
 
     private Integer ano;
  
-    private String semestre;
+    private Integer semestre;
     
     @OneToMany(mappedBy = "turma")
     private List<Aluno> alunos;
@@ -52,11 +52,11 @@ public class Turma {
 		this.ano = ano;
 	}
 
-	public String getSemestre() {
+	public Integer getSemestre() {
 		return semestre;
 	}
 
-	public void setSemestre(String semestre) {
+	public void setSemestre(Integer semestre) {
 		this.semestre = semestre;
   }
 

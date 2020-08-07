@@ -1,5 +1,7 @@
 package com.unitins.projetointegrador2.controller;
 
+import com.unitins.projetointegrador2.model.Turma;
+import com.unitins.projetointegrador2.repository.TurmaRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,23 +9,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.unitins.projetointegrador2.model.Turma;
-import com.unitins.projetointegrador2.service.TurmaService;
-
 @Controller
 @RequestMapping("/")
 public class TurmaController {
 
-	private TurmaService turmaService;
+	private final TurmaRepository turmaRepository;
 
-	public TurmaController(TurmaService turmaService) {
-		super();
-		this.turmaService = turmaService;
+	public TurmaController(TurmaRepository turmaRepository) {
+		this.turmaRepository = turmaRepository;
 	}
 
 	@GetMapping("/listarturma")
 	public String listarturma(Model model) {
-		model.addAttribute("turmas", turmaService.listarTodos());
+		model.addAttribute("turmas", turmaRepository.findAll());
 
 		return "/listarturma";
 	}
@@ -31,7 +29,7 @@ public class TurmaController {
 	@GetMapping("/formularioturma")
 	public String listar(Model model) {
 		model.addAttribute("turma", new Turma());
-		model.addAttribute("turmas", turmaService.listarTodos());
+		model.addAttribute("turmas", turmaRepository.findAll());
 		
 		return "/formularioturma";
 	}
@@ -41,7 +39,7 @@ public class TurmaController {
 
 		System.out.println(turma);
 
-		turmaService.salvar(turma);
+		turmaRepository.save(turma);
 
 		return "redirect:/listarturma";
 	}
@@ -51,7 +49,7 @@ public class TurmaController {
 
 		System.out.println("Editar" + id);
 
-		model.addAttribute("turma", turmaService.buscarPorId(id));
+		model.addAttribute("turma", turmaRepository.findById(id));
 		
 		
 		return "/formularioturma";
@@ -61,7 +59,7 @@ public class TurmaController {
 	@GetMapping("/{id}/excluir")
 	public String excluir(@PathVariable("id") Integer id) {
 		
-		turmaService.removerPorId(id);
+		turmaRepository.deleteById(id);
 		
 		return "redirect:/listarturma";
 	}
