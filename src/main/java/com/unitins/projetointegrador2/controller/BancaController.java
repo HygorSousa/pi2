@@ -1,8 +1,10 @@
 package com.unitins.projetointegrador2.controller;
 
 import com.unitins.projetointegrador2.model.Banca;
+import com.unitins.projetointegrador2.model.ProcessoOrientacao;
 import com.unitins.projetointegrador2.model.Professor;
 import com.unitins.projetointegrador2.repository.BancaRepository;
+import com.unitins.projetointegrador2.repository.ProcessoOrientacaoRepository;
 import com.unitins.projetointegrador2.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,19 +18,27 @@ public class BancaController {
 
     @Autowired
     private ProfessorRepository professorRepository;
+
+    @Autowired
     private BancaRepository bancaRepository;
+
+    @Autowired
+    private ProcessoOrientacaoRepository processoOrientacaoRepository;
 
     @RequestMapping(method = RequestMethod.GET, value = "/cadastro_banca")
     public ModelAndView inicio() {
 
         ModelAndView modelAndView = new ModelAndView("cadastro_banca");
-        modelAndView.addObject("professor_obj", new Professor());
+        modelAndView.addObject("banca_obj", new Banca());
 
         Iterable<Professor> professorIt = professorRepository.findAll();
-        modelAndView.addObject("professores", professorIt);
+        modelAndView.addObject("list_professores", professorIt);
 
-        //Iterable<Banca> bancasIt = bancaRepository.findAll();
-        //modelAndView.addObject("bancas", bancasIt);
+        Iterable<Banca> bancasIt = bancaRepository.findAll();
+        modelAndView.addObject("bancas", bancasIt);
+
+        Iterable<ProcessoOrientacao> processoOrientacaoIt = processoOrientacaoRepository.findAll();
+        modelAndView.addObject("processos", processoOrientacaoIt);
         return modelAndView;
     }
 
@@ -42,9 +52,7 @@ public class BancaController {
         Iterable<Banca> bancasIt = bancaRepository.findAll();
         modelAndView.addObject("bancas", bancasIt);
 
-        modelAndView.addObject(" banca_obj", new Banca());
-
-        return modelAndView;
+        return inicio();
     }
 
     @GetMapping("/alterar_banca/{id_banca}")

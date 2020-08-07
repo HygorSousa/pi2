@@ -2,6 +2,7 @@ package com.unitins.projetointegrador2.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,9 +17,11 @@ public class Banca extends AuditoriaModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date data;
 
+    @DateTimeFormat(pattern = "HH:mm")
     @Temporal(TemporalType.TIME)
     private Date hora;
 
@@ -30,4 +33,36 @@ public class Banca extends AuditoriaModel {
 
     @OneToOne
     private ProcessoOrientacao processoOrientacao;
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public Date getHora() {
+        return hora;
+    }
+
+    public void setHora(Date hora) {
+        this.hora = hora;
+    }
+
+    public List<Professor> getProfessores() {
+        return professores;
+    }
+
+    public void setProfessores(List<Professor> professores) {
+        this.professores = professores;
+    }
+
+    public ProcessoOrientacao getProcessoOrientacao() {
+        return processoOrientacao;
+    }
+
+    public void setProcessoOrientacao(ProcessoOrientacao processoOrientacao) {
+        this.processoOrientacao = processoOrientacao;
+    }
 }

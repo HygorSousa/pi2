@@ -31,7 +31,16 @@ public abstract class AuditoriaModel implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataalteracao;
 
-	
+    @PrePersist
+    private void atualizarDadosAntesInsert() {
+        this.datacadastro = new Date();
+        this.dataalteracao = this.datacadastro;
+    }
+
+    @PreUpdate
+    private void atualizarDadosAntesUpdate() {
+        this.dataalteracao = new Date();
+    }
     
 
 }
