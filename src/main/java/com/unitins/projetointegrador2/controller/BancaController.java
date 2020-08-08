@@ -31,17 +31,21 @@ public class BancaController {
         ModelAndView modelAndView = new ModelAndView("cadastro_banca");
         modelAndView.addObject("banca_obj", new Banca());
 
-        Iterable<Professor> professorIt = professorRepository.findAll();
-        modelAndView.addObject("list_professores", professorIt);
-
         Iterable<Banca> bancasIt = bancaRepository.findAll();
         modelAndView.addObject("bancas", bancasIt);
+        carregarListas(modelAndView);
+        return modelAndView;
+    }
+
+    public ModelAndView carregarListas(ModelAndView modelAndView){
+
+        Iterable<Professor> professorIt = professorRepository.findAll();
+        modelAndView.addObject("list_professores", professorIt);
 
         Iterable<ProcessoOrientacao> processoOrientacaoIt = processoOrientacaoRepository.findAll();
         modelAndView.addObject("processos", processoOrientacaoIt);
         return modelAndView;
     }
-
     @RequestMapping(method = RequestMethod.POST, value = "**/salvar_banca")
     public ModelAndView salvar(Banca banca) {
 
@@ -62,7 +66,7 @@ public class BancaController {
 
         ModelAndView modelAndView = new ModelAndView("cadastro_banca");
         modelAndView.addObject("banca_obj", banca.get());
-
+        carregarListas(modelAndView);
         return modelAndView;
     }
 
@@ -70,13 +74,7 @@ public class BancaController {
     public ModelAndView excluir(@PathVariable("id_banca") Integer id_banca) {
 
         bancaRepository.deleteById(id_banca);
-
-        ModelAndView modelAndView = new ModelAndView("cadastro_banca");
-        modelAndView.addObject("bancas", bancaRepository.findAll());
-
-        modelAndView.addObject("banca_obj", new Banca());
-
-        return modelAndView;
+        return inicio();
     }
 
     @GetMapping("/lista_banca")
@@ -87,7 +85,7 @@ public class BancaController {
 
         modelAndView.addObject("bancas", bancasIt);
         modelAndView.addObject("banca_obj", new Banca());
-
+        carregarListas(modelAndView);
         return modelAndView;
     }
 }

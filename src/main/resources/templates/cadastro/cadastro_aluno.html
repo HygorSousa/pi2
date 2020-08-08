@@ -128,28 +128,5 @@
 		<div th:replace="fragments/footer :: footer"></div>
 
 	</div>
-	<script type="text/javascript">
-
-		function validarCampos(){
-
-			titulo = document.getElementById('titulo').value;
-			descricao = document.getElementById('descricao').value;
-
-			if(titulo === ''){
-
-				alert('O título deve ser informado.');
-				return false;
-			}
-
-			else if(descricao === '') {
-
-				alert('A Descrição deve ser informada.');
-				return false;
-			}
-
-			return true;
-		}
-
-	</script>
 </body>
 </html>

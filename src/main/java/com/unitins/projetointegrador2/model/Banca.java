@@ -34,6 +34,15 @@ public class Banca extends AuditoriaModel {
     @OneToOne
     private ProcessoOrientacao processoOrientacao;
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Date getData() {
         return data;
     }
