@@ -68,7 +68,7 @@
 			</form>
 		</nav>
 	</div>
-  
+
 	<div th:fragment="header-js">
 		<!-- jQuery -->
 		<script
@@ -78,8 +78,8 @@
 			src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 		<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 		<script>
-			$.widget.bridge('uibutton', $.ui.button)
-		</script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
 		<!-- Bootstrap 4 -->
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/js/bootstrap.bundle.min.js"></script>
@@ -180,7 +180,7 @@
 						"<tr><td> UniBot: " + message + "</td></tr>");
 				var objDiv = document.getElementById("historico-chat");
 				objDiv.scrollTop = objDiv.scrollHeight;
-				
+
 				$('#name').val('');
 			}
 

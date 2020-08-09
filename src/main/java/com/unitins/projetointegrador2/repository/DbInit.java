@@ -99,8 +99,8 @@ public class DbInit implements CommandLineRunner {
     }
 
     private void initTurma(){
-        Turma turmaA = new Turma(2020, "2", this.alunoRepository.findAll());
-        Turma turmaB = new Turma(2019, "1", this.alunoRepository.findAll());
+        Turma turmaA = new Turma(2020, "2", (List<Aluno>) this.alunoRepository.findAll());
+        Turma turmaB = new Turma(2019, "1", (List<Aluno>) this.alunoRepository.findAll());
         List<Turma> turmas = Arrays.asList(turmaA,turmaB);
         this.turmaRepository.saveAll(turmas);
     }
@@ -116,7 +116,7 @@ public class DbInit implements CommandLineRunner {
     }
 
     private void initBanca(){
-        Banca bancaA = new Banca(new Date(), new Date(), this.professorRepository.findAll());
+        Banca bancaA = new Banca(new Date(), new Date(), (List<Professor>) this.professorRepository.findAll());
         this.bancaRepository.save(bancaA);
     }
 }

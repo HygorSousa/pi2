@@ -1,47 +1,91 @@
 package com.unitins.projetointegrador2.controller;
 
-import com.unitins.projetointegrador2.model.Pessoa;
+import com.unitins.projetointegrador2.model.Banca;
 import com.unitins.projetointegrador2.model.ProcessoOrientacao;
+import com.unitins.projetointegrador2.model.Professor;
+import com.unitins.projetointegrador2.repository.BancaRepository;
 import com.unitins.projetointegrador2.repository.ProcessoOrientacaoRepository;
+import com.unitins.projetointegrador2.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/")
 public class BancaController {
 
-    private final ProcessoOrientacaoRepository repository;
+    @Autowired
+    private ProfessorRepository professorRepository;
 
-    public BancaController(ProcessoOrientacaoRepository orientacaoRepository) {
-        this.repository = orientacaoRepository;
-    }
+    @Autowired
+    private BancaRepository bancaRepository;
 
-    @GetMapping("banca")
-    public String index() {
-        return "banca";
-    }
+    @Autowired
+    private ProcessoOrientacaoRepository processoOrientacaoRepository;
 
-    @PostMapping("buscarPropostas")
-    public ModelAndView buscarProcessos(ModelAndView modelAndView, @RequestParam("nomeAluno") String nomeAluno, @RequestParam("nomeOrientador") String nomeProfessor, @RequestParam("turmaAno") String turmaAno) {
+    @RequestMapping(method = RequestMethod.GET, value = "/cadastro_banca")
+    public ModelAndView inicio() {
 
-        Optional<List<ProcessoOrientacao>> processos = repository.findByAluno_NomeOrProfessorOrientador_Nome(nomeAluno, nomeProfessor);
+        ModelAndView modelAndView = new ModelAndView("cadastro_banca");
+        modelAndView.addObject("banca_obj", new Banca());
 
-        if (processos.isPresent()) {
-            modelAndView.addObject("processos", processos);
-        } else {
-            modelAndView.addObject("errorMessage", "Oops! Não foi encontrado processo com esses filtros!");
-        }
-
-        modelAndView.setViewName("banca");
+        Iterable<Banca> bancasIt = bancaRepository.findAll();
+        modelAndView.addObject("bancas", bancasIt);
+        carregarListas(modelAndView);
         return modelAndView;
     }
 
+    public ModelAndView carregarListas(ModelAndView modelAndView){
+
+        Iterable<Professor> professorIt = professorRepository.findAll();
+        modelAndView.addObject("list_professores", professorIt);
+
+        Iterable<ProcessoOrientacao> processoOrientacaoIt = processoOrientacaoRepository.findAll();
+        modelAndView.addObject("processos", processoOrientacaoIt);
+        return modelAndView;
+    }
+    @RequestMapping(method = RequestMethod.POST, value = "**/salvar_banca")
+    public ModelAndView salvar(Banca banca) {
+
+        bancaRepository.save(banca);
+
+        ModelAndView modelAndView = new ModelAndView("cadastro_banca");
+
+        Iterable<Banca> bancasIt = bancaRepository.findAll();
+        modelAndView.addObject("bancas", bancasIt);
+
+        return inicio();
+    }
+
+    @GetMapping("/alterar_banca/{id_banca}")
+    public ModelAndView alterar(@PathVariable("id_banca") Integer id_banca) {
+
+        Optional<Banca> banca = bancaRepository.findById(id_banca);
+
+        ModelAndView modelAndView = new ModelAndView("cadastro_banca");
+        modelAndView.addObject("banca_obj", banca.get());
+        carregarListas(modelAndView);
+        return modelAndView;
+    }
+
+    @GetMapping("/deletar_banca/{id_banca}")
+    public ModelAndView excluir(@PathVariable("id_banca") Integer id_banca) {
+
+        bancaRepository.deleteById(id_banca);
+        return inicio();
+    }
+
+    @GetMapping("/lista_banca")
+    public ModelAndView listar() {
+
+        ModelAndView modelAndView = new ModelAndView("cadastro_banca");
+        Iterable<Banca> bancasIt = bancaRepository.findAll();
+
+        modelAndView.addObject("bancas", bancasIt);
+        modelAndView.addObject("banca_obj", new Banca());
+        carregarListas(modelAndView);
+        return modelAndView;
+    }
 }

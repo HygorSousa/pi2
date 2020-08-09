@@ -49,6 +49,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/dist/**", "/plugins/**");
+        web.ignoring().antMatchers("/bower_components/**", "/dist/**", "/plugins/**");
     }
 }

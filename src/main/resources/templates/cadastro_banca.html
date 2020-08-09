@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="br">
+<head>
+    <title>Projeto Integrador II</title>
+    <div th:replace="fragments/header :: header-css"></div>
+    <div th:replace="fragments/header :: header-js"></div>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/sidebar :: sidebar"></div>
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h2>Cadastro de Bancas</h2>
+                        <h6>Gerenciamento Administrativo</h6>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+                            <li class="breadcrumb-item active">Banca</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card-body">
+                    <form th:action="salvar_banca" id="formbanca" method="post"
+                          th:object="${banca_obj}" class="col s12">
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="process">Processos</label></br>
+                                    <select class="m2 form-control" id="process"
+                                            th:field="*{processoOrientacao}">
+                                        <option selected th:each="proc : ${processos}"
+                                                th:text="${proc.titulo}"
+                                                th:value="${proc.id}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="profs">Professores</label></br>
+                                    <select class="selectpicker" multiple id="profs"
+                                            th:field="*{professores}">
+                                        <option selected th:each="prof : ${list_professores}"
+                                                th:text="${prof.nome}"
+                                                th:value="${prof.id}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="dataFim">Data</label>
+                                    <input th:field="*{data}" id="dataFim"
+                                           name="dataFim"
+                                           type="date"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="dataFim">Hora</label>
+                                    <input th:field="*{hora}" id="imputHora"
+                                           name="hora"
+                                           type="time"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-field col s6">
+                            <input class="btn btn-primary" type="submit" value="Salvar">
+
+                            <button class="btn btn-primary"
+                                    onclick="document.getElementById('formbanca') = null;">
+                                Limpar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <di>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Data</th>
+                            <th>Hora</th>
+                            <th>Editar</th>
+                            <th>Excluir</th>
+                        </tr>
+                        </thead>
+
+                        <tr th:each="banca : ${bancas}">
+                            <td th:text="${banca.processoOrientacao.titulo}"></td>
+                            <td th:text="${banca.data}"></td>
+                            <td th:text="${banca.hora}"></td>
+                            <td><a
+                                    th:href="@{/alterar_banca/{id_banca}(id_banca=${banca.id})}">
+                                Editar </a></td>
+                            <td><a
+                                    th:href="@{/deletar_banca/{id_banca}(id_banca=${banca.id})}">
+                                Excluir </a></td>
+                        </tr>
+
+                    </table>
+
+                </di>
+                <div th:replace="fragments/sidebar :: sidebar-control"></div>
+                <div th:replace="fragments/footer :: footer"></div>
+            </div>
+        </div>
+
+    </div>
+    <div th:replace="fragments/sidebar :: sidebar-control"></div>
+    <div th:replace="fragments/footer :: footer"></div>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/css/bootstrap-select.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.8.1/js/bootstrap-select.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</body>
+</html>
