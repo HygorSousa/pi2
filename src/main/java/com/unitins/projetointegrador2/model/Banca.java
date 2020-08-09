@@ -74,4 +74,13 @@ public class Banca extends AuditoriaModel {
     public void setProcessoOrientacao(ProcessoOrientacao processoOrientacao) {
         this.processoOrientacao = processoOrientacao;
     }
+
+    public Banca(Date data, Date hora, List<Professor> professores) {
+        this.data = data;
+        this.hora = hora;
+        this.professores = professores;
+    }
+
+    public Banca() {
+    }
 }

@@ -24,4 +24,13 @@ public class Arquivo extends AuditoriaModel {
             joinColumns = @JoinColumn(name = "idArquivo"),
             inverseJoinColumns = @JoinColumn(name = "idPessoa"))
     private List<Pessoa> pessoas;
+
+    public Arquivo(String caminho, String descricao, List<Pessoa> pessoas) {
+        this.caminho = caminho;
+        this.pessoas = pessoas;
+        this.descricao = descricao;
+    }
+
+    public Arquivo() {
+    }
 }

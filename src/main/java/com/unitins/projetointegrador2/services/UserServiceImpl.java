@@ -1,4 +1,4 @@
-package com.unitins.projetointegrador2.service;
+package com.unitins.projetointegrador2.services;
 
 import com.unitins.projetointegrador2.model.Pessoa;
 import com.unitins.projetointegrador2.repository.PessoaRepository;

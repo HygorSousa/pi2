@@ -21,12 +21,12 @@ import java.util.Date;
 @Setter
 public abstract class AuditoriaModel implements Serializable {
 
-    @Column(name = "datacadastro", nullable = true, updatable = true)
+    @Column(name = "datacadastro", updatable = false)
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date datacadastro;
 
-    @Column(name = "dataalteracao", nullable = true)
+    @Column(name = "dataalteracao")
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataalteracao;
@@ -41,6 +41,5 @@ public abstract class AuditoriaModel implements Serializable {
     private void atualizarDadosAntesUpdate() {
         this.dataalteracao = new Date();
     }
-    
 
 }
