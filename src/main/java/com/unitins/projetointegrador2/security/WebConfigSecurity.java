@@ -1,4 +1,4 @@
-package com.projeto_int.security;
+package com.unitins.projetointegrador2.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,8 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration
-@EnableWebSecurity
+//@Configuration
+//@EnableWebSecurity
 public class WebConfigSecurity extends WebSecurityConfigurerAdapter{
 
 	// Configura as solicitacoes de acesso por Http

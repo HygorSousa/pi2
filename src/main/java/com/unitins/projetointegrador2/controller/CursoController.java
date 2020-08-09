@@ -1,7 +1,7 @@
 package com.unitins.projetointegrador2.controller;
 
 import com.unitins.projetointegrador2.model.Curso;
-import com.unitins.projetointegrador2.service.CursoService;
+import com.unitins.projetointegrador2.repository.CursoRepository;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +13,15 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/curso")
 public class CursoController {
 
-    private CursoService cursoService;
+    private final CursoRepository cursoRepository;
+
+    public CursoController(CursoRepository cursoRepository) {
+        this.cursoRepository = cursoRepository;
+    }
 
     @GetMapping()
     public String listar(Model model) {
-        model.addAttribute("cursos", cursoService.findAll());
+        model.addAttribute("cursos", cursoRepository.findAll());
         return "listarCurso";
     }
 
@@ -25,7 +29,7 @@ public class CursoController {
     public String listarFiltradaPorNome(@RequestParam(required = false) String nome,
                                         Model model) {
 
-        model.addAttribute("cursos", cursoService.findByNome(nome));
+        model.addAttribute("cursos", cursoRepository.findByNome(nome));
         return "listarCurso";
     }
 
@@ -33,7 +37,7 @@ public class CursoController {
     public String listarFiltradaPorDescricao(@RequestParam(required = false) String descricao,
                                              Model model) {
 
-        model.addAttribute("cursos", cursoService.findByDescricao(descricao));
+        model.addAttribute("cursos", cursoRepository.findByDescricao(descricao));
         return "listarCurso";
     }
 
@@ -42,15 +46,15 @@ public class CursoController {
         if (result.hasErrors()) {
             return "redirect:/criarCurso";
         }
-        cursoService.saveCurso(curso);
+        cursoRepository.save(curso);
 
-        model.addAttribute("cursos", cursoService.findAll());
+        model.addAttribute("cursos", cursoRepository.findAll());
         return "redirect:/listarCurso";
     }
 
     @PostMapping("/editarCurso/{id}")
     public String editarAluno(@PathVariable(required = false) Integer id, Model model) {
-        Curso curso = cursoService.findById(id)
+        Curso curso = cursoRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Não foi possível encontrar esse Curso"));
         model.addAttribute("curso", curso);
         return "redirect:/cadastrarCurso";
@@ -59,8 +63,8 @@ public class CursoController {
     @RequestMapping("/excluirCurso/{id}")
     public String excluirCurso(@PathVariable Integer id, Model model) {
         try {
-            cursoService.deleteById(id);
-            model.addAttribute("cursos", cursoService.findAll());
+            cursoRepository.deleteById(id);
+            model.addAttribute("cursos", cursoRepository.findAll());
         } catch (ConstraintViolationException constraintViolationException) {
             model.addAttribute("erroAoExcluir", true);
         }

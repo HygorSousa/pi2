@@ -1,15 +1,9 @@
 package com.unitins.projetointegrador2.model;
 
-import java.util.List;
-
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 import lombok.Data;
+
+import javax.persistence.*;
+import java.util.List;
 
 
 @Data
@@ -30,11 +24,12 @@ public class Turma {
     public Turma() {
     }
 
-    public Turma(Integer ano, Integer semestre, List<Aluno> alunos) {
+    public Turma(Integer ano, String semestre, List<Aluno> alunos) {
         this.ano = ano;
         this.semestre = semestre;
         this.alunos = alunos;
     }
+
 	public Integer getId() {
 		return id;
 	}

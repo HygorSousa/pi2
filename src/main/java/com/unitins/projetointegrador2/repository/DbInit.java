@@ -99,8 +99,8 @@ public class DbInit implements CommandLineRunner {
     }
 
     private void initTurma(){
-        Turma turmaA = new Turma(2020, 2, this.alunoRepository.findAll());
-        Turma turmaB = new Turma(2019, 1, this.alunoRepository.findAll());
+        Turma turmaA = new Turma(2020, "2", this.alunoRepository.findAll());
+        Turma turmaB = new Turma(2019, "1", this.alunoRepository.findAll());
         List<Turma> turmas = Arrays.asList(turmaA,turmaB);
         this.turmaRepository.saveAll(turmas);
     }
