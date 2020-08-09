@@ -2,3 +2,8 @@
 /target/
 /.idea/
 /src/main/resources/application.properties
+.classpath
+.factorypath
+.project
+/bin/
+/.settings/
