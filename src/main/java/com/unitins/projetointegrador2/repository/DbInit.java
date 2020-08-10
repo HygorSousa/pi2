@@ -96,6 +96,9 @@ public class DbInit implements CommandLineRunner {
 
         List<ProcessoOrientacao> processoOrientacaos = Arrays.asList(processo1, processo2, processo3, processo4, processo5, processo6, processo7, processo8, processo9, processo10, processo11, processo12, processo13, processo14);
         this.processoOrientacaoRepository.saveAll(processoOrientacaos);
+
+        Banca bancaA = new Banca(new Date(), new Date(), (List<Professor>) this.professorRepository.findAll(), processo1);
+        this.bancaRepository.save(bancaA);
     }
 
     private void initTurma(){
@@ -116,7 +119,7 @@ public class DbInit implements CommandLineRunner {
     }
 
     private void initBanca(){
-        Banca bancaA = new Banca(new Date(), new Date(), (List<Professor>) this.professorRepository.findAll());
-        this.bancaRepository.save(bancaA);
+     //   Banca bancaA = new Banca(new Date(), new Date(), (List<Professor>) this.professorRepository.findAll());
+      //  this.bancaRepository.save(bancaA);
     }
 }
