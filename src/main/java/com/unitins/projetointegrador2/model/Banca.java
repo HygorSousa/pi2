@@ -25,7 +25,7 @@ public class Banca extends AuditoriaModel {
     @Temporal(TemporalType.TIME)
     private Date hora;
 
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "ProfessorBanca",
             joinColumns = @JoinColumn(name = "idBanca"),
             inverseJoinColumns = @JoinColumn(name = "idProfessor"))

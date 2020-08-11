@@ -1,9 +1,6 @@
 package com.unitins.projetointegrador2.model;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -23,6 +20,12 @@ public class Professor extends Pessoa {
 	@OneToMany
 	@JoinTable(name = "DisponibilidadeProfessor", joinColumns = @JoinColumn(name = "idProfessor"), inverseJoinColumns = @JoinColumn(name = "idDisponibilidade"))
 	private List<Disponibilidade> disponibilidades;
+
+	@ManyToMany
+	@JoinTable(name = "ProfessorBanca",
+			joinColumns = @JoinColumn(name = "idProfessor"),
+			inverseJoinColumns = @JoinColumn(name = "idBanca"))
+	private List<Banca> banca;
 
 	public Professor() {
 	}
