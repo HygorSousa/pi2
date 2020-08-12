@@ -3,6 +3,7 @@ package com.unitins.projetointegrador2.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,7 +40,8 @@ public class AlunoController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "**/salvar_aluno")
 	public ModelAndView salvar(Aluno aluno) {
-
+		aluno.setSenha(new BCryptPasswordEncoder().encode(aluno.getCpf().substring(5,11)));
+		aluno.setRoles("ALUNO");
 		alunoRepository.save(aluno);
 
 		ModelAndView modelAndView = new ModelAndView("cadastro/cadastro_aluno");
