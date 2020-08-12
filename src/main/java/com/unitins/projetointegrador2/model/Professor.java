@@ -21,11 +21,8 @@ public class Professor extends Pessoa {
 	@JoinTable(name = "DisponibilidadeProfessor", joinColumns = @JoinColumn(name = "idProfessor"), inverseJoinColumns = @JoinColumn(name = "idDisponibilidade"))
 	private List<Disponibilidade> disponibilidades;
 
-	@ManyToMany
-	@JoinTable(name = "ProfessorBanca",
-			joinColumns = @JoinColumn(name = "idProfessor"),
-			inverseJoinColumns = @JoinColumn(name = "idBanca"))
-	private List<Banca> banca;
+	@ManyToMany(mappedBy = "professores")
+	private List<Banca> bancas;
 
 	public Professor() {
 	}
@@ -78,5 +75,13 @@ public class Professor extends Pessoa {
 
 	public void setDisponibilidades(List<Disponibilidade> disponibilidades) {
 		this.disponibilidades = disponibilidades;
+	}
+
+	public List<Banca> getBancas() {
+		return bancas;
+	}
+
+	public void setBancas(List<Banca> bancas) {
+		this.bancas = bancas;
 	}
 }

@@ -32,23 +32,22 @@
                 <div class="card-body">
                     <form th:action="salvar_banca" id="formbanca" method="post"
                           th:object="${banca_obj}" class="col s12">
-
-                        <div class="row">
-                            <div class="col-sm-6">
+                        <input th:field="*{id}" type="hidden">
+                            <div class="col">
                                 <div class="form-group">
-                                    <label for="process">Processos</label></br>
+                                    <label for="process" style="display: block">Processos</label>
                                     <select class="m2 form-control" id="process"
                                             th:field="*{processoOrientacao}">
                                         <option selected th:each="proc : ${processos}"
-                                                th:text="${proc.titulo}"
+                                                th:text="${'Titulo: ' + proc.titulo + ' / Aluno: ' + proc.aluno.nome + '/ Orientador: ' + proc.professorOrientador.nome}"
                                                 th:value="${proc.id}">
                                         </option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col">
                                 <div class="form-group">
-                                    <label for="profs">Professores</label></br>
+                                    <label for="profs" style="display: block">Professores</label>
                                     <select class="selectpicker" multiple id="profs"
                                             th:field="*{professores}">
                                         <option selected th:each="prof : ${list_professores}"
@@ -58,9 +57,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col">
                                 <div class="form-group">
                                     <label for="dataFim">Data</label>
                                     <input th:field="*{data}" id="dataFim"
@@ -69,7 +66,7 @@
                                            class="form-control">
                                 </div>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col">
                                 <div class="form-group">
                                     <label for="dataFim">Hora</label>
                                     <input th:field="*{hora}" id="imputHora"
@@ -78,19 +75,18 @@
                                            class="form-control">
                                 </div>
                             </div>
-                        </div>
                         <div class="input-field col s6">
                             <input class="btn btn-primary" type="submit" value="Salvar">
 
                             <button class="btn btn-primary"
-                                    onclick="document.getElementById('formbanca') = null;">
+                                    type="reset">
                                 Limpar
                             </button>
                         </div>
                     </form>
                 </div>
 
-                <di>
+
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
@@ -115,8 +111,6 @@
                         </tr>
 
                     </table>
-
-                </di>
                 <div th:replace="fragments/sidebar :: sidebar-control"></div>
                 <div th:replace="fragments/footer :: footer"></div>
             </div>
