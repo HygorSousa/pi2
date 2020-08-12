@@ -1,4 +1,4 @@
-package com.projeto_int.model;
+package com.unitins.projetointegrador2.model;
 
 import java.io.Serializable;
 

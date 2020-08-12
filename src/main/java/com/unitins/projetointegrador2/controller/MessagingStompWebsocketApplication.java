@@ -1,4 +1,4 @@
-package com.projeto_int.controller;
+package com.unitins.projetointegrador2.controller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

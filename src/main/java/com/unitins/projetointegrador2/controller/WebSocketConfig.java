@@ -1,4 +1,4 @@
-package com.projeto_int.controller;
+package com.unitins.projetointegrador2.controller;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
