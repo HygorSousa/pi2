@@ -1,15 +1,16 @@
 package com.unitins.projetointegrador2.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
-@Data
 @Entity
 public class AreaConhecimento extends AuditoriaModel {
 
@@ -22,6 +23,9 @@ public class AreaConhecimento extends AuditoriaModel {
 	private String nome;
 
 	private String descricao;
+	
+	@ManyToMany(mappedBy = "areasConhecimento")
+	private List<Professor> professores;
 
 	public Integer getId() {
 		return id;
@@ -47,10 +51,19 @@ public class AreaConhecimento extends AuditoriaModel {
 		this.descricao = descricao;
 	}
 
-    public AreaConhecimento(String descricao) {
+    public AreaConhecimento(String nome, String descricao) {
         this.descricao = descricao;
+        this.nome = nome;
     }
 
     public AreaConhecimento() {
     }
+
+	public List<Professor> getProfessores() {
+		return professores;
+	}
+
+	public void setProfessores(List<Professor> professores) {
+		this.professores = professores;
+	}
 }

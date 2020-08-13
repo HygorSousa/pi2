@@ -20,7 +20,7 @@ public class Aluno extends Pessoa {
 	public Aluno() {
 	}
 
-	public Aluno(String nome, String matricula, String cpf, String senha, String roles) {
+	public Aluno(String nome, String matricula, String cpf, String senha, String roles, Turma turma) {
 		setNome(nome);
 		setMatricula(matricula);
 		setCpf(cpf);

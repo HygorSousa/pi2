@@ -13,8 +13,10 @@ public class Professor extends Pessoa {
 	@OneToMany(mappedBy = "professorOrientador")
 	private List<ProcessoOrientacao> orientacoes;
 
-	@OneToMany
-	@JoinTable(name = "AreaConhecimentoProfessor", joinColumns = @JoinColumn(name = "idProfessor"), inverseJoinColumns = @JoinColumn(name = "idAreaConhecimento"))
+	@ManyToMany
+	@JoinTable(name = "AreaConhecimentoProfessor", 
+	joinColumns = @JoinColumn(name = "idProfessor"), 
+	inverseJoinColumns = @JoinColumn(name = "idAreaConhecimento"))
 	private List<AreaConhecimento> areasConhecimento;
 
 	@OneToMany
@@ -27,13 +29,14 @@ public class Professor extends Pessoa {
 	public Professor() {
 	}
 
-	public Professor(String nome, String matricula, String cpf, String senha, String roles) {
+	public Professor(String nome, String matricula, String cpf, String senha, String roles, List<AreaConhecimento> areasConhecimento) {
 		setNome(nome);
 		setMatricula(matricula);
 		setCpf(cpf);
 		setSenha(senha);
 		setRoles(roles);
 		setEmail("hygor-araujo1@hotmail.com");
+		setAreasConhecimento(areasConhecimento);
 
 	}
 
