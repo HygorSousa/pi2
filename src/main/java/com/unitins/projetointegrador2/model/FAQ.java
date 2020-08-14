@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class FAQ implements Serializable{
@@ -19,6 +20,9 @@ public class FAQ implements Serializable{
 	private String pergunta;
 
 	private String resposta;
+	
+	@Transient
+	private String nomepesquisa;
 
 	public Long getId() {
 		return id;
@@ -26,6 +30,14 @@ public class FAQ implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public String getNomepesquisa() {
+		return nomepesquisa;
+	}
+
+	public void setNomepesquisa(String nomepesquisa) {
+		this.nomepesquisa = nomepesquisa;
 	}
 
 	public String getPergunta() {
@@ -44,4 +56,12 @@ public class FAQ implements Serializable{
 		this.resposta = resposta;
 	}
 
+	public FAQ(String pergunta, String resposta) {
+		this.pergunta = pergunta;
+		this.resposta = resposta;
+	}
+
+	public FAQ() {
+	}
+	
 }

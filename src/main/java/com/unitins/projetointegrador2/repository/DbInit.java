@@ -13,6 +13,7 @@ import com.unitins.projetointegrador2.model.Adminstrador;
 import com.unitins.projetointegrador2.model.Aluno;
 import com.unitins.projetointegrador2.model.AreaConhecimento;
 import com.unitins.projetointegrador2.model.Banca;
+import com.unitins.projetointegrador2.model.FAQ;
 import com.unitins.projetointegrador2.model.Pessoa;
 import com.unitins.projetointegrador2.model.ProcessoOrientacao;
 import com.unitins.projetointegrador2.model.Professor;
@@ -29,8 +30,10 @@ public class DbInit implements CommandLineRunner {
     private final ProfessorRepository professorRepository;
     private final AreaConhecimentoRepository areaConhecimentoRepository;
     private final ProcessoOrientacaoRepository processoOrientacaoRepository;
+    private final FAQRepository faqRepository;
 
-    public DbInit(BancaRepository bancaRepository, ProfessorRepository professorRepository, AreaConhecimentoRepository areaConhecimentoRepository, TurmaRepository turmaRepository, PessoaRepository pessoaRepository, ProcessoOrientacaoRepository processoOrientacaoRepository, AlunoRepository alunoRepository) {
+    public DbInit(BancaRepository bancaRepository, ProfessorRepository professorRepository, AreaConhecimentoRepository areaConhecimentoRepository, TurmaRepository turmaRepository, 
+    		PessoaRepository pessoaRepository, ProcessoOrientacaoRepository processoOrientacaoRepository, AlunoRepository alunoRepository, FAQRepository faqRepository) {
         this.alunoRepository = alunoRepository;
         this.turmaRepository = turmaRepository;
         this.bancaRepository = bancaRepository;
@@ -38,6 +41,7 @@ public class DbInit implements CommandLineRunner {
         this.professorRepository = professorRepository;
         this.areaConhecimentoRepository = areaConhecimentoRepository;
         this.processoOrientacaoRepository = processoOrientacaoRepository;
+        this.faqRepository = faqRepository;
     }
 
     @Override
@@ -163,5 +167,16 @@ public class DbInit implements CommandLineRunner {
         Banca bancaF = new Banca(new Date(), new Date(), professoresBancaAux3, processo20);
         List<Banca> bancas = Arrays.asList(bancaA,bancaB,bancaC,bancaD,bancaE,bancaF);
         this.bancaRepository.saveAll(bancas);
+        
+        //Deleta faq
+        this.faqRepository.deleteAll();
+        // Create Banca
+        FAQ faq1 = new FAQ("O que é TCC?", "O TCC (Trabalho de Conclusão de Curso), como o próprio nome diz, é o trabalho final que você deve realizar para concluir o seu curso de graduação. Normalmente é elaborado no último ano da faculdade...");
+        FAQ faq2 = new FAQ("O que é PCC?", "O PCC (Projeto de Conclusão de Curso), como o próprio nome diz, é o trabalho anterior ao TCC, que você deve realizar para concluir o seu curso de graduação. Normalmente é elaborado no penúltimo ano...");
+        FAQ faq3 = new FAQ("O que é plágio?", "O plágio é o ato de assinar, apresentar e publicar uma obra intelectual de qualquer natureza contendo partes de uma obra que pertença a outra pessoa sem a permissão do autor. No acto de plágio, ...");
+        FAQ faq4 = new FAQ("Como funciona a assinatura digital?", "A assinatura digital é uma tecnologia utilizada para autenticar documentos eletrônicos, como arquivos em PDF, por exemplo. Ela utiliza as chaves criptográficas...");
+        List<FAQ> faqs = Arrays.asList(faq1, faq2, faq3, faq4);
+        this.faqRepository.saveAll(faqs);
+        
     }
 }
