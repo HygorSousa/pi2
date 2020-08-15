@@ -1,12 +1,18 @@
 package com.unitins.projetointegrador2.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,19 +26,33 @@ public class Proposta extends AuditoriaModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
-	private String nome_aluno;
+	
 	private String descricao;
 	private String titulo;
-	private String turma;
 
+	@ManyToOne
+	@JoinColumn(name = "id_aluno_fk")
+	private Aluno aluno;
+
+	@ManyToOne
+	@JoinColumn(name = "professor_id_fk")
+	private Professor professor;
+	
+	@Column
+	@Enumerated(EnumType.STRING)
 	private Status status;
 
-	private String professor;
-
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
-	private Date data_criacao;
+	@Column
+	@Enumerated(EnumType.STRING)
+	private TipoProcessoOrientacao tipo;
+	
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(name = "data_inicio", nullable = false, columnDefinition = "DATE")
+    private LocalDate dataInicio;
+	
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @Column(name = "data_fim", columnDefinition = "DATE")
+    private LocalDate dataFim;
 
 	public Integer getId() {
 		return id;
@@ -42,12 +62,20 @@ public class Proposta extends AuditoriaModel implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome_aluno() {
-		return nome_aluno;
+	public Aluno getAluno() {
+		return aluno;
 	}
 
-	public void setNome_aluno(String nome_aluno) {
-		this.nome_aluno = nome_aluno;
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+	
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
 
 	public String getDescricao() {
@@ -66,21 +94,20 @@ public class Proposta extends AuditoriaModel implements Serializable {
 		this.titulo = titulo;
 	}
 
-	public String getTurma() {
-		return turma;
+	public LocalDate getDataInicio() {
+		return dataInicio;
 	}
 
-	public void setTurma(String turma) {
-		this.turma = turma;
+	public void setDataInicio(LocalDate dataInicio) {
+		this.dataInicio = dataInicio;
 	}
 
-
-	public Date getData_criacao() {
-		return data_criacao;
+	public LocalDate getDataFim() {
+		return dataFim;
 	}
 
-	public void setData_criacao(Date data_criacao) {
-		this.data_criacao = data_criacao;
+	public void setDataFim(LocalDate dataFim) {
+		this.dataFim = dataFim;
 	}
 
 	public Status getStatus() {
@@ -91,12 +118,12 @@ public class Proposta extends AuditoriaModel implements Serializable {
 		this.status = status;
 	}
 
-	public String getProfessor() {
-		return professor;
+	public TipoProcessoOrientacao getTipo() {
+		return tipo;
 	}
 
-	public void setProfessor(String professor) {
-		this.professor = professor;
+	public void setTipo(TipoProcessoOrientacao tipo) {
+		this.tipo = tipo;
 	}
 
 }

@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.unitins.projetointegrador2.model.Pessoa;
+import com.unitins.projetointegrador2.model.Proposta;
+import com.unitins.projetointegrador2.model.Turma;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

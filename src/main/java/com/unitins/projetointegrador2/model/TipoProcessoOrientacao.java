@@ -12,11 +12,11 @@ public enum TipoProcessoOrientacao {
         this.valor = valor;
         this.label = label;
     }
-
+    
     public int getValor() {
         return valor;
     }
-
+  
     public String getLabel() {
         return label;
     }

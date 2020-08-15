@@ -45,18 +45,19 @@
 										<div class="form-group col-md-4">
 											<label for="aluno_proposta">Nome do Aluno:</label> 
 											<br />
-											<span th:text="${p.nome_aluno}" class="form-control" readonly="readonly"></span>
+											<span th:text="${p.aluno.nome}" class="form-control" readonly="readonly"></span>
 										</div>
-										<div class="form-group col-md-4">
+										
+										<div class="form-group col-md-4" th:each="t : ${propostaobj}">
 											<label for="turma_proposta">Turma/Ano:</label> 
 											<br />
-											<span th:text="${p.turma}" class="form-control" readonly="readonly"></span>
+											<span th:text="${p.aluno.turma}" class="form-control" readonly="readonly"></span>
 										</div>
 										<div class="form-group col-md-4">
 											<label for="professor_proposta">Professor da
 												Proposta:</label> 
 											<br />
-											<span th:text="${p.professor}" class="form-control" readonly="readonly"></span>
+											<span th:text="${p.professor.nome}" class="form-control" readonly="readonly"></span>
 										</div>
 									</div>
 									<div class="form-row">
@@ -68,7 +69,7 @@
 										<div class="form-group col-md-4">
 											<label for="data_cri">Data da Criação:</label> 
 											<br />
-											<span th:text="${p.data_criacao}" class="form-control" readonly="readonly"></span>
+											<span th:text="${p.dataInicio}" class="form-control" readonly="readonly"></span>
 										</div>
 										<div class="form-group col-md-4">
 											<label for="status_proposta">Status da Proposta:</label>
