@@ -32,11 +32,13 @@
                 <div class="card-body">
                     <form th:action="salvar_banca" id="formbanca" method="post"
                           th:object="${banca_obj}" class="col s12">
-                        <input th:field="*{id}" type="hidden">
+                        <input th:field="*{id}" type="hidden"/>
+
+                        <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <label for="process" style="display: block">Processos</label>
-                                    <select class="m2 form-control" id="process"
+                                    <select class="form-control" id="process"
                                             th:field="*{processoOrientacao}">
                                         <option selected th:each="proc : ${processos}"
                                                 th:text="${'Titulo: ' + proc.titulo + ' / Aluno: ' + proc.aluno.nome + '/ Orientador: ' + proc.professorOrientador.nome}"
@@ -48,7 +50,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="profs" style="display: block">Professores</label>
-                                    <select class="selectpicker" multiple id="profs"
+                                    <select class="selectpicker col-md-12 select-professor" multiple id="profs"
                                             th:field="*{professores}">
                                         <option selected th:each="prof : ${list_professores}"
                                                 th:text="${prof.nome}"
@@ -57,6 +59,9 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <label for="dataFim">Data</label>
@@ -75,6 +80,7 @@
                                            class="form-control">
                                 </div>
                             </div>
+                        </div>
                         <div class="input-field col s6">
                             <input class="btn btn-primary" type="submit" value="Salvar">
 
@@ -83,34 +89,35 @@
                                 Limpar
                             </button>
                         </div>
+
                     </form>
                 </div>
 
 
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                        <tr>
-                            <th>Titulo</th>
-                            <th>Data</th>
-                            <th>Hora</th>
-                            <th>Editar</th>
-                            <th>Excluir</th>
-                        </tr>
-                        </thead>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Data</th>
+                        <th>Hora</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
+                    </tr>
+                    </thead>
 
-                        <tr th:each="banca : ${bancas}">
-                            <td th:text="${banca.processoOrientacao.titulo}"></td>
-                            <td th:text="${banca.data}"></td>
-                            <td th:text="${banca.hora}"></td>
-                            <td><a
-                                    th:href="@{/alterar_banca/{id_banca}(id_banca=${banca.id})}">
-                                Editar </a></td>
-                            <td><a
-                                    th:href="@{/deletar_banca/{id_banca}(id_banca=${banca.id})}">
-                                Excluir </a></td>
-                        </tr>
+                    <tr th:each="banca : ${bancas}">
+                        <td th:text="${banca.processoOrientacao.titulo}"></td>
+                        <td th:text="${banca.data}"></td>
+                        <td th:text="${banca.hora}"></td>
+                        <td><a
+                                th:href="@{/alterar_banca/{id_banca}(id_banca=${banca.id})}">
+                            Editar </a></td>
+                        <td><a
+                                th:href="@{/deletar_banca/{id_banca}(id_banca=${banca.id})}">
+                            Excluir </a></td>
+                    </tr>
 
-                    </table>
+                </table>
                 <div th:replace="fragments/sidebar :: sidebar-control"></div>
                 <div th:replace="fragments/footer :: footer"></div>
             </div>
@@ -121,6 +128,12 @@
     <div th:replace="fragments/footer :: footer"></div>
 
 </div>
+<style>
+    .select-professor {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet"
